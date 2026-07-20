@@ -1,4 +1,4 @@
-import { defineConfig, loadEnv } from 'vite'
+import { defineConfig, loadEnv, type UserConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
@@ -7,7 +7,7 @@ import { viteMockServe } from 'vite-plugin-mock'
 import path from 'path'
 import fs from 'fs'
 
-export default defineConfig(async ({ mode }) => {
+export default defineConfig(async ({ mode }): Promise<UserConfig> => {
   const env = loadEnv(mode, process.cwd())
   const isProxyMode = mode === 'proxy'
 
@@ -40,7 +40,7 @@ export default defineConfig(async ({ mode }) => {
       }),
       viteMockServe({
         mockPath: 'mock',
-        enable: env.MODE === 'development',
+        enable: mode === 'development',
         watchFiles: true,
         logger: true,
         cors: true, 
@@ -51,8 +51,55 @@ export default defineConfig(async ({ mode }) => {
         '@': path.resolve(__dirname, 'src'),
       },
     },
-    server: {
-      proxy: isProxyMode ? proxyConfig : undefined,
+    css: {
+      // 配置 SCSS 预处理器选项
+      preprocessorOptions: {
+        scss: {
+          additionalData: `@use "@/assets/styles/variables" as *;`
+        }
+      }
     },
+    preview: {
+      port: 4173,
+      cors: true
+    },
+    server: {
+      host: '0.0.0.0',
+      port: 3000,
+      open: true,
+      proxy: isProxyMode ? proxyConfig : {},
+    },
+    build: {
+      target: 'es2015',
+      cssCodeSplit: true, // 启用 CSS 代码分割
+      sourcemap: false, // 生产环境禁用 source map
+      minify: 'terser', // 使用 terser 进行代码压缩
+      terserOptions: {
+        compress: {
+          drop_debugger: true, // 移除 debugger 语句
+          pure_funcs: ['console.log'] // 移除 console.log 语句
+        },
+        format: {
+          comments: false // 移除注释
+        }
+      },
+      chunkSizeWarningLimit: 500, // 配置代码分割警告阈值
+      rollupOptions: {
+        output: {
+          chunkFileNames: 'static/js/[name]-[hash].js',
+          entryFileNames: 'static/js/[name]-[hash].js',
+          assetFileNames: 'static/[ext]/[name]-[hash].[ext]',
+          manualChunks(id: string) {
+            // 将 node_modules 中的依赖打包到 vendor.js 中
+            if (id.includes('node_modules')) {
+              return 'vendor'
+            }
+          }
+        }
+      },
+    },
+    define: {
+      'process.env': env // 定义环境变量
+    }
   }
 })

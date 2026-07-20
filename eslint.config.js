@@ -1,16 +1,33 @@
+import globals from "globals"
 import js from '@eslint/js'
 import tseslint from 'typescript-eslint'
 import pluginVue from 'eslint-plugin-vue'
 import vueParser from 'vue-eslint-parser'
 import prettierConfig from 'eslint-config-prettier'
+import { readFile } from 'node:fs/promises'
 
-export default [
+const autoImportFile = new URL('./.eslintrc-auto-imports.json', import.meta.url);
+const autoImportGlobals = JSON.parse(await readFile(autoImportFile, 'utf8'));
+
+export default [ 
   // 基础配置
   js.configs.recommended,
   ...tseslint.configs.recommended,
   ...pluginVue.configs['flat/recommended'],
   prettierConfig,
-
+  {
+    languageOptions: {
+      globals: {
+        ...autoImportGlobals.globals, // 注入自动导入的全局变量（如 nextTick, ref 等）
+        ...globals.browser, // 注入浏览器全局变量（如 window, document, navigator 等）
+        // Element Plus 全局组件
+        ElMessage: true,
+        ElMessageBox: true,
+        ElNotification: true,
+        ElLoading: true,
+      },
+    },
+  },
   // 忽略的文件
   {
     ignores: [
@@ -107,7 +124,6 @@ export default [
           },
         },
       ],
-      '@typescript-eslint/no-explicit-any': 'warn',
       'prefer-spread': 'off',
       'prefer-rest-params': 'off',
       'max-depth': ['error', 3],
@@ -125,6 +141,9 @@ export default [
         es2021: true,
         node: true,
       },
+    },
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'warn',
     },
   },
 ]

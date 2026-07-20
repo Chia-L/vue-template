@@ -1,1 +1,248 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    min-height: 100%;
+    color: #0f172a;
+  }
+
+  body {
+    min-width: 1366px;
+    min-height: 100%;
+    font-family: "Microsoft YaHei", Arial, sans-serif, Helvetica, "Helvetica Neue", "PingFang SC", "San Francisco", "Source Han Sans", Roboto;
+    overflow-y: hidden;
+  }
+
+  #app {
+    min-height: 100%;
+  }
+
+  /* 统一滚动条样式 */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #c1c1c1;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #a8a8a8;
+  }
+
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+}
+
+@layer components {
+  :root {
+    --btn-color: #17A2BB;
+    --btn-color-light-3: #5DBECF;
+    --btn-color-light-5: #8BD0DD;
+    --btn-color-light-9: #E8F6F8;
+    --btn-color-dark-2: #128296;
+    --btn-danger-color: #F56C6C;
+    --btn-danger-color-light-3: #F89898;
+    --btn-danger-color-light-5: #FAB6B6;
+    --btn-danger-color-light-9: #FEF0F0;
+    --btn-danger-color-dark-2: #DD6161;
+   }
+
+/* ================= 按钮 ================= */
+  .clw-btn .el-button,
+  .clw-btn.el-button {
+    --el-button-divide-border-color: var(--btn-color-light-5);
+  }
+
+  /* ================= 默认按钮 ================= */
+  .clw-btn .el-button,
+  .clw-btn.el-button {
+    --el-button-text-color: var(--btn-color);
+    --el-button-bg-color: #fff;
+    --el-button-border-color: var(--btn-color);
+    --el-button-hover-text-color: #fff;
+    --el-button-hover-bg-color: var(--btn-color);
+    --el-button-hover-border-color: var(--btn-color);
+    --el-button-active-text-color: #fff;
+  }
+
+  /* ================= primary 主要按钮 ================= */
+  .clw-btn .el-button--primary,
+  .clw-btn.el-button--primary {
+    /* 默认状态 */
+    --el-button-text-color: #fff;
+    --el-button-bg-color: var(--btn-color);
+    --el-button-border-color: var(--btn-color);
+    --el-button-outline-color: var(--btn-color-light-5);
+     --el-button-active-color: var(--btn-color-dark-2);
+    --el-button-hover-text-color: #fff;
+    --el-button-hover-link-text-color: var(--btn-color-light-5);
+    --el-button-hover-bg-color: var(--btn-color-light-3);
+    --el-button-hover-border-color: var(--btn-color-light-3);
+    --el-button-active-bg-color: var(--btn-color-dark-2);
+    --el-button-active-border-color: var(--btn-color-dark-2);
+    --el-button-disabled-text-color: #fff;
+    --el-button-disabled-bg-color: var(--btn-color-light-5);
+    --el-button-disabled-border-color: var(--btn-color-light-5);
+  }
+
+  /* ================= primary 主要按钮 (plain 朴素) ================= */
+  .clw-btn .el-button--primary.is-plain,
+  .clw-btn.el-button--primary.is-plain {
+    --el-button-text-color: var(--btn-color);
+    --el-button-bg-color: #fff;
+    --el-button-border-color: var(--btn-color);
+    --el-button-hover-text-color: #fff;
+    --el-button-hover-bg-color: var(--btn-color);
+    --el-button-hover-border-color: var(--btn-color);
+    --el-button-active-text-color: #fff;
+    --el-button-active-bg-color: var(--btn-color-dark-2);
+    --el-button-active-border-color: var(--btn-color-dark-2);
+  }
+
+  /* ================= danger 危险按钮 ================= */
+  .clw-btn .el-button--danger,
+  .clw-btn.el-button--danger {
+    --el-button-text-color: #fff;
+    --el-button-bg-color: var(--btn-danger-color);
+    --el-button-border-color: var(--btn-danger-color);
+    --el-button-outline-color: var(--btn-danger-color-light-5);
+    --el-button-hover-text-color: #fff;
+    --el-button-hover-link-text-color: var(--btn-danger-color-light-3);
+    --el-button-hover-bg-color: var(--btn-danger-color-light-3);
+    --el-button-hover-border-color: var(--btn-danger-color-light-3);
+    --el-button-active-bg-color: var(--btn-danger-color-dark-2);
+    --el-button-active-border-color: var(--btn-danger-color-dark-2);
+    --el-button-disabled-text-color: #fff;
+    --el-button-disabled-bg-color: var(--btn-danger-color-light-5);
+    --el-button-disabled-border-color: var(--btn-danger-color-light-5);
+  }
+
+  /* ================= danger 危险按钮 (plain 朴素) ================= */
+  .clw-btn .el-button--danger.is-plain,
+  .clw-btn.el-button--danger.is-plain {
+    --el-button-text-color: var(--btn-danger-color);
+    --el-button-bg-color: #fff;
+    --el-button-border-color: var(--btn-danger-color);
+    --el-button-hover-text-color: #fff;
+    --el-button-hover-bg-color: var(--btn-danger-color);
+    --el-button-hover-border-color: var(--btn-danger-color);
+    --el-button-active-text-color: #fff;
+    --el-button-active-bg-color: var(--btn-danger-color-dark-2);
+    --el-button-active-border-color: var(--btn-danger-color-dark-2);
+  }
+
+  .clw-table .vxe-table .vxe-table--header-wrapper{
+    color: #9EA7B4;
+    font-weight: 700;
+  }
+
+ /* .clw-table .vxe-table :not(.is--stripe) .vxe-table--header-wrapper {
+    border-bottom: 1px solid #dcdfe6;
+  } */
+
+  .clw-table .vxe-table .vxe-cell--sort-vertical-layout .vxe-sort--asc-btn,
+  .clw-table .vxe-table .vxe-cell--sort-vertical-layout .vxe-sort--desc-btn {
+    font-size: 14px;
+    height: 8px;
+  }
+
+  .clw-table .vxe-grid--pager-wrapper,
+  .clw-table .vxe-pager,
+  .clw-table .vxe-pager .vxe-pager--wrapper {
+    background-color: #ededed !important;
+  }
+
+  .clw-tip-ellipsis {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  .clw-tooltip-max-w {
+    max-width: 260px !important;
+  }
+
+  .clw-tooltip-hanging-num > div {
+    padding-left: 1em;
+    text-indent: -1em;
+  }
+
+  .clw-tooltip-hanging-prefix > div {
+    padding-left: 3em;
+    text-indent: -3em;
+  }
+
+  .clw-tree-table {
+    .vxe-body--row.row--hover > .vxe-body--column {
+      color: var(--btn-color);
+      background-color: #f1fdff !important;
+    }
+
+    .vxe-body--row.row--current > .vxe-body--column {
+      color: var(--btn-color);
+      background-color: #DCF1F5 !important;
+    }
+  }
+
+  button.el-button+button.el-button {
+    margin-left: 10px;
+  }
+}
+
+.clw-stepper-form {
+  .el-form-item__label {
+    padding-left: 10px;
+  }
+}
+
+.clw-input {
+  .el-input__wrapper.is-focus {
+    box-shadow: 0 0 0 1px var(--btn-color) inset;
+  }
+}
+
+.filter-popover {
+  .el-range-editor.el-input__wrapper {
+    justify-content: space-between;
+  }
+
+  .el-date-editor .el-range-separator {
+    flex: 0 0 auto;
+  }
+}
+
+.clw-table {
+  .vxe-header--row {
+    .vxe-header--column.is--sortable .vxe-header-cell--wrapper {
+      padding-right: 18px;
+      display: block;
+    }
+
+    .vxe-header--column.col--seq .vxe-header-cell--wrapper {
+      padding-right: 0;
+    }
+
+    .vxe-header-cell--wrapper {
+      position: relative;
+
+      .vxe-cell--sort {
+        position: absolute;
+        top: 0;
+      }
+    }
+  }
+}
+
+.clw-tooltip-popover.el-tooltip {
+  max-width: 600px;
+}
