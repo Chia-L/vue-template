@@ -22,6 +22,16 @@
     </div>
     <div class="header-right">
       <slot name="header-right">
+        <div class="clw-language flex items-center">
+          <el-select v-model="selectedLang" placeholder="选择语言">
+            <el-option
+              v-for="item in langOptions"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value" />
+          </el-select>
+        </div>
+      
         <el-popover
           trigger="click"
           placement="bottom-start"
@@ -96,6 +106,8 @@ import NotifySettingDialog from '@/app/views/layout/NotifySettingDialog.vue'
 import { useRoute, useRouter } from 'vue-router'
 import { lockSession, isUserLocked, getNotifySetting } from '@/app/apis/user'
 import { useRemoteTimeStore } from '@/app/stores/remote-time'
+import { useI18n } from 'vue-i18n'
+const { locale } = useI18n();
 
 interface HeaderPropsType {
   menus?: Menu,
@@ -159,6 +171,17 @@ const taskNum = ref(0) */
 const activeMenu = ref('')
 const defaultOpeneds = ref<string[]>([])
 const showSidebar = ref<boolean>(false)
+const selectedLang = ref(localStorage.getItem('app_language') || 'zh-CN')
+const langOptions = ref([
+  { value: 'zh-CN', label: '中文' },
+  { value: 'en-US', label: '英文' }
+])
+
+watch(selectedLang, (newVal: string) => {
+  locale.value = newVal
+  localStorage.setItem('app_language', newVal)
+})
+
 // 用户下拉面板
 const userPopoverVisible = ref(false)
 const displayName = computed(() => {
@@ -359,6 +382,23 @@ onUnmounted(() => {
       content: '';
 
       @apply inline-block h-[18px] mx-[8px] border-l-[1px] border-[#ffffff];
+    }
+
+    .clw-language {
+      @apply w-[90px] h-[22px];
+
+      :deep(.el-select__wrapper) {
+        min-height: 22px;
+        line-height: 22px;
+        padding: 0;
+        background-color: transparent;
+        box-shadow: none;
+
+        .el-select__selected-item,
+        .el-select__caret {
+          color: #fff;
+        }
+      }
     }
   }
 

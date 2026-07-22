@@ -4,6 +4,7 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import { viteMockServe } from 'vite-plugin-mock'
+import i18nHelperPlugin from './plugins/i18n-helper/plugin.js'
 import path from 'path'
 import fs from 'fs'
 
@@ -43,7 +44,17 @@ export default defineConfig(async ({ mode }): Promise<UserConfig> => {
         enable: mode === 'development',
         watchFiles: true,
         logger: true,
-        cors: true, 
+        cors: true,
+      }),
+      i18nHelperPlugin({
+        scanDir: ['/src'],
+        excludeDirs: [],
+        localLang: 'zh-CN',
+        targetLangs: ['en-US'],
+        localesDir: '@/assets/i18n/locales',
+        i18nExportFile: '@/assets/i18n/locales/index.ts',
+        cacheFile: '.locales-temp/extracted.json',
+        publicKey: 'common',
       }),
     ],
     resolve: {
