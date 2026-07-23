@@ -175,6 +175,20 @@ class JSParser {
         continue
       }
 
+      // 验证开启引号是否真的是字符串的开始：
+      // 如果引号前面是 ]、)、}、字母、数字或引号，说明这个引号是前一个字符串的关闭引号，应跳过
+      if (strStart > 0) {
+        const prevChar = content[strStart - 1]
+        if (/[\w\]\)\}'"]/.test(prevChar)) {
+          continue
+        }
+      }
+
+      // 跳过跨行匹配：如果匹配内容包含换行符，说明是跨行误匹配，应跳过
+      if (/[\r\n]/.test(match[0])) {
+        continue
+      }
+
       // 跳过已包裹的
       if (/t\(/.test(strContent) || /\$t\(/.test(strContent)) {
         continue

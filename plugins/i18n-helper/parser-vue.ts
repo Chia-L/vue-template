@@ -5,6 +5,8 @@
 
 import { hasChinese, extractChinese, getCommentRanges, isInComment, parseTemplateString, parseStringConcatExpression, generateUUID } from './utils.ts'
 import type { I18nConfig, ExtractedEntry, ParseResult, TemplateVar } from './types.ts'
+import type CacheManager from './cache-manager.ts'
+import type LocaleManager from './locale-manager.ts'
 
 /**
  * 判断一行是否为 import 语句
@@ -53,11 +55,60 @@ class VueParser {
   private config: I18nConfig
   private localLang: string
   private extractedEntries: ExtractedEntry[]
+  private cacheManager: CacheManager
+  private localeManager: LocaleManager
+  // 中文值 -> 完整语言key的映射
+  private chineseToKeyMap: Map<string, string>
+  // 记录每个文件名下的uuid集合，用于生成唯一key
+  private fileUuidMap: Map<string, Set<string>>
 
-  constructor(config: I18nConfig) {
+  constructor(config: I18nConfig, cacheManager: CacheManager, localeManager: LocaleManager) {
     this.config = config
     this.localLang = config.localLang
     this.extractedEntries = []
+    this.cacheManager = cacheManager
+    this.localeManager = localeManager
+    this.chineseToKeyMap = new Map()
+    this.fileUuidMap = new Map()
+    this._buildChineseToKeyMap()
+  }
+
+  /**
+   * 构建中文值到语言key的映射
+   * 从 localLang json 和 cacheFile 中读取
+   * @private
+   */
+  _buildChineseToKeyMap(): void {
+    // 从 localLang json 构建映射
+    const localLangData = this.localeManager.getLocale(this.localLang)
+    for (const [group, entries] of Object.entries(localLangData)) {
+      for (const [uuid, value] of Object.entries(entries)) {
+        const fullKey = `${group}.${uuid}`
+        this.chineseToKeyMap.set(value, fullKey)
+        // 记录文件名下的uuid
+        if (!this.fileUuidMap.has(group)) {
+          this.fileUuidMap.set(group, new Set())
+        }
+        this.fileUuidMap.get(group)!.add(uuid)
+      }
+    }
+
+    // 从 cacheFile 构建映射
+    const cacheData = this.cacheManager.getAll()
+    for (const [group, entries] of Object.entries(cacheData)) {
+      for (const [uuid, entry] of Object.entries(entries)) {
+        const fullKey = `${group}.${uuid}`
+        // 如果 localLang json 中已有该中文值，优先使用 localLang 的 key
+        if (!this.chineseToKeyMap.has(entry.value)) {
+          this.chineseToKeyMap.set(entry.value, fullKey)
+        }
+        // 记录文件名下的uuid
+        if (!this.fileUuidMap.has(group)) {
+          this.fileUuidMap.set(group, new Set())
+        }
+        this.fileUuidMap.get(group)!.add(uuid)
+      }
+    }
   }
 
   /**
@@ -161,7 +212,7 @@ class VueParser {
 
       // 提取中文并生成 key
       const chineseText = extractChinese(text)
-      const key = this._generateKey(chineseText, filePath)
+      const [key, isNew] = this._generateKey(chineseText, filePath)
       const wrappedText = `{{ $t('${key}') }}`
 
       // 替换文本
@@ -170,12 +221,14 @@ class VueParser {
       result = result.substring(0, start + offset) + wrappedText + result.substring(end + offset)
       offset += wrappedText.length - text.length
 
-      this.extractedEntries.push({
-        key,
-        value: chineseText,
-        source: filePath,
-        type: 'template-text'
-      })
+      if (isNew) {
+        this.extractedEntries.push({
+          key,
+          value: chineseText,
+          source: filePath,
+          type: 'template-text'
+        })
+      }
     }
 
     return result
@@ -210,7 +263,7 @@ class VueParser {
       }
 
       const chineseText = extractChinese(attrValue)
-      const key = this._generateKey(chineseText, filePath)
+      const [key, isNew] = this._generateKey(chineseText, filePath)
 
       // 替换为动态绑定
       const replacement = `:${attrName}="$t('${key}')"`
@@ -248,7 +301,7 @@ class VueParser {
       }
 
       const chineseText = extractChinese(attrValue)
-      const key = this._generateKey(chineseText, filePath)
+      const [key, isNew] = this._generateKey(chineseText, filePath)
 
       // 替换为 $t 调用
       const replacement = `:${attrName}="$t('${key}')"`
@@ -307,7 +360,7 @@ class VueParser {
         
         if (!chineseText) continue
 
-        const key = this._generateKey(chineseText, filePath)
+        const [key, isNew] = this._generateKey(chineseText, filePath)
         const replacement = `t('${key}')`
         const start = strMatch.index + strOffset
         const end = start + strMatch[0].length
@@ -315,12 +368,14 @@ class VueParser {
         strOffset += replacement.length - strMatch[0].length
         hasReplacement = true
 
-        this.extractedEntries.push({
-          key,
-          value: chineseText,
-          source: filePath,
-          type: 'template-expr-attr'
-        })
+        if (isNew) {
+          this.extractedEntries.push({
+            key,
+            value: chineseText,
+            source: filePath,
+            type: 'template-expr-attr'
+          })
+        }
       }
 
       if (hasReplacement) {
@@ -388,7 +443,7 @@ class VueParser {
       
       if (!chineseText) continue
 
-      const key = this._generateKey(chineseText, filePath)
+      const [key, isNew] = this._generateKey(chineseText, filePath)
 
       // 构建替换字符串
       let replacement: string
@@ -404,13 +459,15 @@ class VueParser {
       processed = processed.substring(0, start) + replacement + processed.substring(end)
       offset += replacement.length - match[0].length
 
-      this.extractedEntries.push({
-        key,
-        value: chineseText,
-        source: filePath,
-        type: 'script-string-concat',
-        vars
-      })
+      if (isNew) {
+        this.extractedEntries.push({
+          key,
+          value: chineseText,
+          source: filePath,
+          type: 'script-string-concat',
+          vars
+        })
+      }
     }
 
     return processed
@@ -452,7 +509,7 @@ class VueParser {
       
       if (!chineseText) continue
 
-      const key = this._generateKey(chineseText, filePath)
+      const [key, isNew] = this._generateKey(chineseText, filePath)
 
       // 构建替换字符串
       let replacement: string
@@ -474,13 +531,15 @@ class VueParser {
       processed = processed.substring(0, start) + fullReplacement + processed.substring(end)
       offset += fullReplacement.length - match[0].length
 
-      this.extractedEntries.push({
-        key,
-        value: chineseText,
-        source: filePath,
-        type: 'template-string-concat',
-        vars
-      })
+      if (isNew) {
+        this.extractedEntries.push({
+          key,
+          value: chineseText,
+          source: filePath,
+          type: 'template-string-concat',
+          vars
+        })
+      }
     }
 
     return processed
@@ -514,7 +573,7 @@ class VueParser {
       }
 
       const chineseText = extractChinese(strContent)
-      const key = this._generateKey(chineseText, filePath)
+      const [key, isNew] = this._generateKey(chineseText, filePath)
 
       // 替换为 t() 调用
       const replacement = `t('${key}')`
@@ -523,12 +582,14 @@ class VueParser {
       processed = processed.substring(0, start) + replacement + processed.substring(end)
       offset += replacement.length - match[0].length
 
-      this.extractedEntries.push({
-        key,
-        value: chineseText,
-        source: filePath,
-        type: 'script-string'
-      })
+      if (isNew) {
+        this.extractedEntries.push({
+          key,
+          value: chineseText,
+          source: filePath,
+          type: 'script-string'
+        })
+      }
     }
 
     return processed
@@ -595,12 +656,6 @@ class VueParser {
    */
   _addVueI18nImport(content: string): string {
     const importStatement = "import { useI18n } from 'vue-i18n'"
-    const useStatement = 'const { t, locale } = useI18n()'
-
-    // 检查是否已经存在
-    if (content.includes(importStatement) && content.includes(useStatement)) {
-      return content
-    }
 
     // 找到 <script> 标签
     const scriptMatch = content.match(/<script[^>]*>([\s\S]*?)<\/script>/)
@@ -610,10 +665,44 @@ class VueParser {
 
     const scriptContent = scriptMatch[1]
     const lines = scriptContent.split('\n')
+
+    // 1. 检查是否已存在 import { useI18n } from 'vue-i18n'
+    const hasImport = content.includes(importStatement)
+
+    // 2. 检查是否已存在 const { ... } = useI18n()
+    const useI18nRegex = /const\s+\{([^}]*)\}\s*=\s*useI18n\(\)/
+    const useMatch = scriptContent.match(useI18nRegex)
+    const hasUseI18n = useMatch !== null
+
+    if (hasUseI18n) {
+      // 已存在 useI18n() 调用，检查解构中是否包含 t
+      const destructured = useMatch![1]
+      const hasT = destructured.split(',').map(s => s.trim()).includes('t')
+
+      if (!hasT) {
+        // 解构中不包含 t，添加 t
+        const newDestructured = `${destructured}, t`
+        const oldStatement = `const { ${destructured} } = useI18n()`
+        const newStatement = `const { ${newDestructured} } = useI18n()`
+        return content.replace(oldStatement, newStatement)
+      }
+
+      // 已包含 t，不需要修改
+      return content
+    }
+
+    // 不存在 useI18n() 调用，需要添加
     const insertPos = findImportEndLine(lines)
 
+    // 构建要插入的语句
+    const statementsToInsert: string[] = []
+    if (!hasImport) {
+      statementsToInsert.push(importStatement)
+    }
+    statementsToInsert.push('const { t } = useI18n()')
+
     // 在 import 块结束后的位置插入
-    lines.splice(insertPos, 0, importStatement, useStatement)
+    lines.splice(insertPos, 0, ...statementsToInsert)
 
     // 替换原来的 script 内容
     return content.replace(scriptContent, lines.join('\n'))
@@ -621,12 +710,74 @@ class VueParser {
 
   /**
    * 生成语言 key
+   * 如果中文值已存在映射中，返回已有 key；否则生成新的 文件名.uuid
+   * @returns [完整语言key, 是否新生成]
    * @private
    */
-  _generateKey(chineseText: string, filePath: string): string {
-    // 从文件路径提取组件名
-    const uuid = generateUUID()
-    return `${uuid}`
+  _generateKey(chineseText: string, filePath: string): [string, boolean] {
+    // 检查是否已有映射
+    const existingKey = this.chineseToKeyMap.get(chineseText)
+    if (existingKey) {
+      // 更新 cacheFile 中的 source 字段
+      this._updateSourceInCache(existingKey, filePath)
+      return [existingKey, false]
+    }
+
+    // 生成新 key
+    const componentName = this._getComponentName(filePath)
+    let uuid = generateUUID()
+
+    // 确保 uuid 在该文件名下唯一
+    if (!this.fileUuidMap.has(componentName)) {
+      this.fileUuidMap.set(componentName, new Set())
+    }
+    const uuidSet = this.fileUuidMap.get(componentName)!
+    while (uuidSet.has(uuid)) {
+      uuid = generateUUID()
+    }
+    uuidSet.add(uuid)
+
+    const newKey = `${componentName}.${uuid}`
+    // 加入映射
+    this.chineseToKeyMap.set(chineseText, newKey)
+
+    // 写入 cacheFile（只写入 cacheFile，不写入 localLang json）
+    this.cacheManager.addEntry(componentName, uuid, chineseText, this.localLang, filePath)
+
+    return [newKey, true]
+  }
+
+  /**
+   * 更新 cacheFile 中词条的 source 字段（多文件用 | 拼接）
+   * @private
+   */
+  _updateSourceInCache(fullKey: string, filePath: string): void {
+    const dotIndex = fullKey.indexOf('.')
+    if (dotIndex === -1) return
+    const group = fullKey.substring(0, dotIndex)
+    const uuid = fullKey.substring(dotIndex + 1)
+    const entry = this.cacheManager.get(group, uuid)
+    if (entry) {
+      const source = entry.source || ''
+      if (!source.split('|').includes(filePath)) {
+        const newSource = source ? `${source}|${filePath}` : filePath
+        this.cacheManager.updateEntry(group, uuid, { source: newSource })
+      }
+    }
+  }
+
+  /**
+   * 从文件路径获取组件名
+   * 特殊处理 .d.ts 类型文件，去掉 .d.ts 后缀
+   * @private
+   */
+  _getComponentName(filePath: string): string {
+    const fileName = filePath.split('/').pop()
+    if (!fileName) return ''
+    if (fileName.endsWith('.d.ts')) {
+      return fileName.replace(/\.d\.ts$/, '')
+    }
+    return fileName.replace(/\.\w+$/, '')
   }
 
   /**

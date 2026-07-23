@@ -1,0 +1,425 @@
+{
+  "ClwHeader": {
+    "77732748": {
+      "value": "会话锁定失败",
+      "zh-CN": "会话锁定失败",
+      "source": "src/app/components/ClwHeader.vue"
+    },
+    "601e1658": {
+      "value": "显示名称",
+      "zh-CN": "显示名称",
+      "source": "src/app/components/ClwHeader.vue"
+    },
+    "c9ed3177": {
+      "value": "登录账号",
+      "zh-CN": "登录账号",
+      "source": "src/app/components/ClwHeader.vue"
+    },
+    "7b43e084": {
+      "value": "选择语言",
+      "zh-CN": "选择语言",
+      "source": "src/app/components/ClwHeader.vue"
+    },
+    "79522dbe": {
+      "value": "服务器时间：{$0}",
+      "zh-CN": "服务器时间：{$0}",
+      "source": "src/app/components/ClwHeader.vue"
+    },
+    "8791bfd8": {
+      "value": "中文",
+      "zh-CN": "中文",
+      "source": "src/app/components/ClwHeader.vue"
+    },
+    "3cb11cf5": {
+      "value": "英文",
+      "zh-CN": "英文",
+      "source": "src/app/components/ClwHeader.vue"
+    },
+    "81a2926c": {
+      "value": "更改密码",
+      "zh-CN": "更改密码",
+      "source": "src/app/components/ClwHeader.vue"
+    },
+    "d9180701": {
+      "value": "消息通知设置",
+      "zh-CN": "消息通知设置",
+      "source": "src/app/components/ClwHeader.vue|src/app/views/layout/NotifySettingDialog.vue"
+    },
+    "fd966f5d": {
+      "value": "会话锁定",
+      "zh-CN": "会话锁定",
+      "source": "src/app/components/ClwHeader.vue|src/app/views/Lock.vue"
+    },
+    "6a4f0274": {
+      "value": "该账户会话被锁定",
+      "zh-CN": "该账户会话被锁定",
+      "source": "src/app/components/ClwHeader.vue"
+    },
+    "0a41f6ae": {
+      "value": "注销登录",
+      "zh-CN": "注销登录",
+      "source": "src/app/components/ClwHeader.vue"
+    }
+  },
+  "VxeBasicDlgComp": {
+    "6fad4091": {
+      "value": "消息提示",
+      "zh-CN": "消息提示",
+      "source": "src/app/components/VxeBasicDlgComp.vue|src/app/components/VxeBasicDrawer.vue"
+    },
+    "0698329f": {
+      "value": "确定",
+      "zh-CN": "确定",
+      "source": "src/app/components/VxeBasicDlgComp.vue"
+    },
+    "a9925668": {
+      "value": "取消",
+      "zh-CN": "取消",
+      "source": "src/app/components/VxeBasicDlgComp.vue|src/app/components/VxeBasicDrawer.vue"
+    }
+  },
+  "VxeBasicDrawer": {
+    "fe63e5f9": {
+      "value": "确认",
+      "zh-CN": "确认",
+      "source": "src/app/components/VxeBasicDrawer.vue"
+    }
+  },
+  "Home": {
+    "c2af5505": {
+      "value": "首页",
+      "zh-CN": "首页",
+      "source": "src/app/views/Home.vue"
+    }
+  },
+  "EditPassPwd": {
+    "49379764": {
+      "value": "请再次输入新密码",
+      "zh-CN": "请再次输入新密码",
+      "source": "src/app/views/layout/EditPassPwd.vue|src/app/views/Login.vue|src/app/views/Reset.vue"
+    },
+    "142a4cb4": {
+      "value": "旧密码",
+      "zh-CN": "旧密码",
+      "source": "src/app/views/layout/EditPassPwd.vue"
+    },
+    "7bc14323": {
+      "value": "请输入旧密码",
+      "zh-CN": "请输入旧密码",
+      "source": "src/app/views/layout/EditPassPwd.vue"
+    },
+    "903f982e": {
+      "value": "新密码",
+      "zh-CN": "新密码",
+      "source": "src/app/views/layout/EditPassPwd.vue|src/app/views/Login.vue|src/app/views/Reset.vue"
+    },
+    "568e2b81": {
+      "value": "请输入新密码",
+      "zh-CN": "请输入新密码",
+      "source": "src/app/views/layout/EditPassPwd.vue|src/app/views/Login.vue|src/app/views/Reset.vue"
+    },
+    "6c625250": {
+      "value": "重复新密码",
+      "zh-CN": "重复新密码",
+      "source": "src/app/views/layout/EditPassPwd.vue|src/app/views/Login.vue"
+    },
+    "1eb07f83": {
+      "value": "修改密码",
+      "zh-CN": "修改密码",
+      "source": "src/app/views/layout/EditPassPwd.vue|src/app/views/Login.vue"
+    },
+    "51a4b6e5": {
+      "value": "新密码不能与旧密码相同",
+      "zh-CN": "新密码不能与旧密码相同",
+      "source": "src/app/views/layout/EditPassPwd.vue"
+    },
+    "44e54861": {
+      "value": "两次输入不相同请重新输入",
+      "zh-CN": "两次输入不相同请重新输入",
+      "source": "src/app/views/layout/EditPassPwd.vue|src/app/views/Login.vue|src/app/views/Reset.vue"
+    },
+    "c6109794": {
+      "value": "密码修改失败",
+      "zh-CN": "密码修改失败",
+      "source": "src/app/views/layout/EditPassPwd.vue"
+    },
+    "2e044cc4": {
+      "value": "密码中至少包括英文大写字母（A到Z），英文小写字母（a到z），10 个基本数字（0到9）和非字母字符（如：~!@#等）中的三种，且密码长度为{len}-32个字符",
+      "zh-CN": "密码中至少包括英文大写字母（A到Z），英文小写字母（a到z），10 个基本数字（0到9）和非字母字符（如：~!@#等）中的三种，且密码长度为{len}-32个字符",
+      "source": "src/app/views/layout/EditPassPwd.vue|src/app/views/Login.vue"
+    },
+    "1897e92e": {
+      "value": "密码强必须包括英文大写字母（A到Z），英文小写字母（a到z），10 个基本数字（0到9）和非字母字符（如：~!@#等），且密码长度为{len}-32个字符",
+      "zh-CN": "密码强必须包括英文大写字母（A到Z），英文小写字母（a到z），10 个基本数字（0到9）和非字母字符（如：~!@#等），且密码长度为{len}-32个字符",
+      "source": "src/app/views/layout/EditPassPwd.vue|src/app/views/Login.vue"
+    },
+    "0230deab": {
+      "value": "密码字符类型不限定，密码长度为{len}-32个字符",
+      "zh-CN": "密码字符类型不限定，密码长度为{len}-32个字符",
+      "source": "src/app/views/layout/EditPassPwd.vue"
+    }
+  },
+  "NotifySettingDialog": {
+    "74618113": {
+      "value": "手机号码",
+      "zh-CN": "手机号码",
+      "source": "src/app/views/layout/NotifySettingDialog.vue"
+    },
+    "b50fc260": {
+      "value": "未填写地址时不再提醒",
+      "zh-CN": "未填写地址时不再提醒",
+      "source": "src/app/views/layout/NotifySettingDialog.vue"
+    },
+    "a0a4312b": {
+      "value": "地址",
+      "zh-CN": "地址",
+      "source": "src/app/views/layout/NotifySettingDialog.vue"
+    },
+    "da8cc93f": {
+      "value": "用于接收通知消息和找回密码",
+      "zh-CN": "用于接收通知消息和找回密码",
+      "source": "src/app/views/layout/NotifySettingDialog.vue"
+    },
+    "9f2b920f": {
+      "value": "用于接收通知消息",
+      "zh-CN": "用于接收通知消息",
+      "source": "src/app/views/layout/NotifySettingDialog.vue"
+    },
+    "2f000446": {
+      "value": "请务必填写地址用于管理员密码忘记时紧急找回密码如果有配置消息发送设置以及勾选发送的事件范围在此填写了正确的邮箱地址手机号则会收到相应的消息通知",
+      "zh-CN": "请务必填写地址用于管理员密码忘记时紧急找回密码如果有配置消息发送设置以及勾选发送的事件范围在此填写了正确的邮箱地址手机号则会收到相应的消息通知",
+      "source": "src/app/views/layout/NotifySettingDialog.vue"
+    },
+    "bcf058ba": {
+      "value": "如果管理员有配置消息发送设置以及勾选发送的事件范围在此填写了正确的邮箱地址手机号则会收到相应的消息通知",
+      "zh-CN": "如果管理员有配置消息发送设置以及勾选发送的事件范围在此填写了正确的邮箱地址手机号则会收到相应的消息通知",
+      "source": "src/app/views/layout/NotifySettingDialog.vue"
+    },
+    "e4fbbddc": {
+      "value": "请输入正确格式的邮件地址",
+      "zh-CN": "请输入正确格式的邮件地址",
+      "source": "src/app/views/layout/NotifySettingDialog.vue"
+    },
+    "de1ce2cb": {
+      "value": "请输入正确格式的手机号",
+      "zh-CN": "请输入正确格式的手机号",
+      "source": "src/app/views/layout/NotifySettingDialog.vue"
+    },
+    "7f6451d8": {
+      "value": "设置成功",
+      "zh-CN": "设置成功",
+      "source": "src/app/views/layout/NotifySettingDialog.vue"
+    },
+    "07eb1aa7": {
+      "value": "设置失败",
+      "zh-CN": "设置失败",
+      "source": "src/app/views/layout/NotifySettingDialog.vue"
+    }
+  },
+  "Lock": {
+    "cfc577c6": {
+      "value": "密码",
+      "zh-CN": "密码",
+      "source": "src/app/views/Lock.vue|src/app/views/Login.vue"
+    },
+    "3c6eb5f0": {
+      "value": "密码不能为空",
+      "zh-CN": "密码不能为空",
+      "source": "src/app/views/Lock.vue"
+    },
+    "c45d0dd1": {
+      "value": "会话已锁定请输入密码解锁",
+      "zh-CN": "会话已锁定请输入密码解锁",
+      "source": "src/app/views/Lock.vue"
+    },
+    "f9bd339a": {
+      "value": "解锁成功",
+      "zh-CN": "解锁成功",
+      "source": "src/app/views/Lock.vue"
+    },
+    "6fc6ed7e": {
+      "value": "秒后自动跳转至锁定前页面",
+      "zh-CN": "秒后自动跳转至锁定前页面",
+      "source": "src/app/views/Lock.vue"
+    },
+    "c65a1254": {
+      "value": "解锁",
+      "zh-CN": "解锁",
+      "source": "src/app/views/Lock.vue"
+    },
+    "989753ce": {
+      "value": "请输入密码",
+      "zh-CN": "请输入密码",
+      "source": "src/app/views/Lock.vue|src/app/views/Login.vue"
+    },
+    "caf37c9c": {
+      "value": "该用户已解锁",
+      "zh-CN": "该用户已解锁",
+      "source": "src/app/views/Lock.vue"
+    }
+  },
+  "Login": {
+    "48592373": {
+      "value": "版权所有深圳市科力锐科技有限公司保留一切权利",
+      "zh-CN": "版权所有深圳市科力锐科技有限公司保留一切权利",
+      "source": "src/app/views/Login.vue"
+    },
+    "58b60011": {
+      "value": "服务支持",
+      "zh-CN": "服务支持",
+      "source": "src/app/views/Login.vue"
+    },
+    "488d2711": {
+      "value": "关于我们",
+      "zh-CN": "关于我们",
+      "source": "src/app/views/Login.vue|src/app/views/Reset.vue"
+    },
+    "2fbb288c": {
+      "value": "在线帮助",
+      "zh-CN": "在线帮助",
+      "source": "src/app/views/Login.vue"
+    },
+    "bf50c80f": {
+      "value": "忘记密码",
+      "zh-CN": "忘记密码",
+      "source": "src/app/views/Login.vue"
+    },
+    "ce7afcef": {
+      "value": "登录",
+      "zh-CN": "登录",
+      "source": "src/app/views/Login.vue"
+    },
+    "2c0e3f3f": {
+      "value": "授权异常请联系管理员或转至",
+      "zh-CN": "授权异常请联系管理员或转至",
+      "source": "src/app/views/Login.vue"
+    },
+    "c2489ac9": {
+      "value": "授权界面",
+      "zh-CN": "授权界面",
+      "source": "src/app/views/Login.vue"
+    },
+    "0d6f1c6f": {
+      "value": "授权到期时间",
+      "zh-CN": "授权到期时间",
+      "source": "src/app/views/Login.vue"
+    },
+    "a22e0c05": {
+      "value": "将发送重设密码的链接至该账户绑定的邮箱地址请注意查收若用户未绑定邮箱请联系相关管理员重置密码",
+      "zh-CN": "将发送重设密码的链接至该账户绑定的邮箱地址请注意查收若用户未绑定邮箱请联系相关管理员重置密码",
+      "source": "src/app/views/Login.vue"
+    },
+    "c2d23a4f": {
+      "value": "用户名",
+      "zh-CN": "用户名",
+      "source": "src/app/views/Login.vue"
+    },
+    "06b7e7d9": {
+      "value": "请输入用户名",
+      "zh-CN": "请输入用户名",
+      "source": "src/app/views/Login.vue"
+    },
+    "0fe4d53e": {
+      "value": "密码字符类型不限定密码长度为个字符",
+      "zh-CN": "密码字符类型不限定密码长度为个字符",
+      "source": "src/app/views/Login.vue"
+    },
+    "229a1858": {
+      "value": "账户不存在",
+      "zh-CN": "账户不存在",
+      "source": "src/app/views/Login.vue"
+    },
+    "65ee7502": {
+      "value": "获取登录盐值失败",
+      "zh-CN": "获取登录盐值失败",
+      "source": "src/app/views/Login.vue"
+    },
+    "9f523c55": {
+      "value": "已锁定",
+      "zh-CN": "已锁定",
+      "source": "src/app/views/Login.vue"
+    },
+    "ae40dd9f": {
+      "value": "登录失败",
+      "zh-CN": "登录失败",
+      "source": "src/app/views/Login.vue"
+    },
+    "00d04a75": {
+      "value": "强制改密",
+      "zh-CN": "强制改密",
+      "source": "src/app/views/Login.vue"
+    },
+    "cb5b51c3": {
+      "value": "此账号已绑定硬件加密锁",
+      "zh-CN": "此账号已绑定硬件加密锁",
+      "source": "src/app/views/Login.vue"
+    },
+    "863c48b7": {
+      "value": "未检测到硬件加密锁请插入硬件加密锁",
+      "zh-CN": "未检测到硬件加密锁请插入硬件加密锁",
+      "source": "src/app/views/Login.vue"
+    },
+    "ae8a7a6c": {
+      "value": "邮件发送失败",
+      "zh-CN": "邮件发送失败",
+      "source": "src/app/views/Login.vue"
+    },
+    "2fc87999": {
+      "value": "邮件发送成功请检查邮箱",
+      "zh-CN": "邮件发送成功请检查邮箱",
+      "source": "src/app/views/Login.vue"
+    },
+    "b6215607": {
+      "value": "登录已锁定，请于{ lockTimeMsg }后重试",
+      "zh-CN": "登录已锁定，请于{ lockTimeMsg }后重试",
+      "source": "src/app/views/Login.vue"
+    },
+    "63abd7fa": {
+      "value": "检测到{sn.length}个硬件加密锁，请只插入1个",
+      "zh-CN": "检测到{sn.length}个硬件加密锁，请只插入1个",
+      "source": "src/app/views/Login.vue"
+    }
+  },
+  "Reset": {
+    "98912169": {
+      "value": "修改成功",
+      "zh-CN": "修改成功",
+      "source": "src/app/views/Reset.vue"
+    },
+    "3436b26c": {
+      "value": "重置密码",
+      "zh-CN": "重置密码",
+      "source": "src/app/views/Reset.vue"
+    },
+    "6da21907": {
+      "value": "请在前完成重置密码操作",
+      "zh-CN": "请在前完成重置密码操作",
+      "source": "src/app/views/Reset.vue"
+    },
+    "97597ddb": {
+      "value": "确认修改",
+      "zh-CN": "确认修改",
+      "source": "src/app/views/Reset.vue"
+    },
+    "11d728ae": {
+      "value": "登录账户",
+      "zh-CN": "登录账户",
+      "source": "src/app/views/Reset.vue"
+    },
+    "d7c22854": {
+      "value": "确认密码",
+      "zh-CN": "确认密码",
+      "source": "src/app/views/Reset.vue"
+    },
+    "3e03827a": {
+      "value": "修改密码失败",
+      "zh-CN": "修改密码失败",
+      "source": "src/app/views/Reset.vue"
+    },
+    "7ea0b56b": {
+      "value": "获取失败",
+      "zh-CN": "获取失败",
+      "source": "src/app/views/Reset.vue"
+    }
+  }
+}

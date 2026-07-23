@@ -105,6 +105,39 @@ class Scanner {
   }
 
   /**
+   * 获取所有源代码文件列表（用于统计中文出现次数）
+   * @returns 所有源代码文件的绝对路径列表
+   */
+  getAllSourceFiles(): string[] {
+    const allFiles: string[] = []
+
+    for (const dir of this.scanDir) {
+      const fullDir = path.resolve(this.projectRoot, dir.substring(1))
+      if (!fs.existsSync(fullDir)) {
+        continue
+      }
+      const files = this._walkDirectory(fullDir)
+      for (const file of files) {
+        const relativePath = path.relative(this.projectRoot, file).replace(/\\/g, '/')
+        const fullPath = '/' + relativePath
+
+        if (this._isExcluded(fullPath)) {
+          continue
+        }
+
+        const ext = path.extname(file)
+        if (!this.supportedExts.includes(ext)) {
+          continue
+        }
+
+        allFiles.push(file)
+      }
+    }
+
+    return allFiles
+  }
+
+  /**
    * 递归遍历目录
    * @private
    */

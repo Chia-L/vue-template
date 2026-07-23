@@ -46,16 +46,16 @@ export default defineConfig(async ({ mode }): Promise<UserConfig> => {
         logger: true,
         cors: true,
       }),
-      i18nHelperPlugin({
+      mode === 'development' ? i18nHelperPlugin({
         scanDir: ['/src'],
-        excludeDirs: [],
+        excludeDirs: ['src/assets/i18n'],
         localLang: 'zh-CN',
         targetLangs: ['en-US'],
         localesDir: '@/assets/i18n/locales',
         i18nExportFile: '@/assets/i18n/locales/index.ts',
         cacheFile: '.locales-temp/extracted.json',
-        publicKey: 'common',
-      }),
+        publicKey: 'CommonCon',
+      }) : null,
     ],
     resolve: {
       alias: {
