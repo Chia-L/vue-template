@@ -49,8 +49,8 @@ export default defineConfig(async ({ mode }): Promise<UserConfig> => {
       mode === 'development' ? i18nHelperPlugin({
         scanDir: ['/src'],
         excludeDirs: ['src/assets/i18n'],
-        localLang: 'zh-CN',
-        targetLangs: ['en-US'],
+        localLang: 'zh-cn',
+        targetLangs: ['en'],
         localesDir: '@/assets/i18n/locales',
         i18nExportFile: '@/assets/i18n/locales/index.ts',
         cacheFile: '.locales-temp/extracted.json',

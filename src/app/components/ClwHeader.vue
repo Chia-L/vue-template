@@ -171,10 +171,10 @@ const taskNum = ref(0) */
 const activeMenu = ref('')
 const defaultOpeneds = ref<string[]>([])
 const showSidebar = ref<boolean>(false)
-const selectedLang = ref(localStorage.getItem('app_language') || 'zh-CN')
+const selectedLang = ref(localStorage.getItem('app_language') || 'zh-cn')
 const langOptions = ref([
-  { value: 'zh-CN', label: '中文' },
-  { value: 'en-US', label: '英文' }
+  { value: 'zh-cn', label: '中文' },
+  { value: 'en', label: '英文' }
 ])
 
 watch(selectedLang, (newVal: string) => {
