@@ -42,5 +42,21 @@ export default [
         }
       }
     }
+  },
+  // 测试AES密钥
+  {
+    url: '/api/aes/test/',
+    method: 'POST',
+    response: () => {
+      return {
+        r: 1,
+        e: '',
+        data: {
+          salt: '1234567890123456',
+          token_key: '1234567890123456',
+          token_iv: '1234567890123456'
+        }
+      }
+    }
   }
 ]

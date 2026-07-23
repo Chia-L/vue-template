@@ -1,0 +1,156 @@
+{
+  "common": {
+    "common.0821fd89": "获取远端时间",
+    "user.454ba8bb": "忘记密码",
+    "user.2a6d92ed": "获取密码策略",
+    "user.1d225063": "修改密码",
+    "user.9dd7ff57": "会话锁定",
+    "ClwHeader.aff19306": "消息通知设置",
+    "VxeBasicDlgComp.847c463e": "消息提示",
+    "VxeBasicDlgComp.0ece05a4": "确定",
+    "VxeBasicDlgComp.598c8974": "取消",
+    "tools.0f9864bc": "密码中应包含",
+    "ukey_api.d25c7413": "错误",
+    "ukey_api.778c2891": "初始化硬件加密锁失败",
+    "ukey_api.ac784f0d": "硬件加密锁方法执行失败",
+    "static.8c7bc9f8": "登录",
+    "permission.7656848a": "菜单结构",
+    "remote-time.6e796a8d": "获取中",
+    "EditPassPwd.8c7f5cd8": "请输入旧密码",
+    "EditPassPwd.c0c4cd0a": "新密码",
+    "EditPassPwd.dc1f31b0": "请输入新密码",
+    "EditPassPwd.9ad275fa": "重复新密码",
+    "EditPassPwd.5feb77ea": "请再次输入新密码",
+    "NotifySettingDialog.e6a50d43": "地址",
+    "NotifySettingDialog.3b14f434": "用于接收通知消息",
+    "Lock.e492c31d": "密码",
+    "Lock.f8a65a60": "请输入密码",
+    "Login.069e910d": "请输入用户名",
+    "Login.0383c9b7": "账户不存在"
+  },
+  "user": {
+    "user.90ca040d": "退出登录退出登录登录结果",
+    "user.cc5e40ea": "获取用户信息获取用户信息用户信息",
+    "user.ad0b7a55": "会话锁定状态获取",
+    "user.153f395d": "会话解锁",
+    "user.25dc6e41": "通知设置类型获取通知设置",
+    "user.a6ceee73": "保存通知设置",
+    "user.add838b4": "验证管理员密码停止服务前二次确认",
+    "user.4f4bdd80": "开启状态持久化",
+    "user.04aab727": "重置重置无",
+    "user.d580be21": "用户管理用户类型"
+  },
+  "ClwHeader": {
+    "ClwHeader.c99ec5ed": "告警信息处理告警信息点击事件处理告警信息数量变化事件任务处理任务点击事件处理任务数量变化事件",
+    "ClwHeader.316de745": "用户下拉面板",
+    "ClwHeader.e058b610": "更改密码",
+    "ClwHeader.c9e8adf6": "该账户会话被锁定",
+    "ClwHeader.384348cc": "会话锁定失败",
+    "ClwHeader.2a267aaa": "注销登录",
+    "ClwHeader.42ba8ece": "判断是否为子菜单",
+    "ClwHeader.6f7f5e32": "切换顶部导航栏切换到指定导航栏切换到指定导航栏的默认选中项切换到指定导航栏的默认展开项优先使用路由用于路由高亮对应的可见菜单项根据动态确定高亮菜单项",
+    "ClwHeader.4ee83f91": "故意忽略异常更新服务器时间",
+    "ClwHeader.fb711713": "初始化顶部导航栏根据当前路由找到对应的导航栏切换到该导航栏更新服务器时间"
+  },
+  "VxeBasicDrawer": {
+    "VxeBasicDrawer.f006e229": "确认"
+  },
+  "encrypt": {
+    "encrypt.e2063554": "生成一个位的随机数"
+  },
+  "jsonp": {
+    "jsonp.a73f07f1": "请求失败"
+  },
+  "request": {
+    "request.e41c9ce0": "重试次数重试延迟时间内部记录重试次数创建实例",
+    "request.f0fd67f0": "统一错误处理"
+  },
+  "tools": {
+    "tools.85bfc984": "密码不能包含中文或空格",
+    "tools.ed83521c": "新密码的长度应该介于",
+    "tools.b6810c76": "到之间",
+    "tools.d5e6bf04": "密码中应包含特殊字符",
+    "tools.3cff244b": "新密码至少需要包含种字符"
+  },
+  "ukey_api": {
+    "ukey_api.f6fe8b58": "错误弹窗使用已支持",
+    "ukey_api.4152b6ed": "全局下载函数挂载到供调用",
+    "ukey_api.7a3e7eaf": "获取数据失败"
+  },
+  "business": {
+    "business.9829e3c0": "首页"
+  },
+  "static": {
+    "static.e85bd77e": "密码重置"
+  },
+  "permission": {
+    "permission.a898c82b": "子路由都没有权限当前路由也没有权限设置菜单设置菜单根据动态路由配置生成菜单结构动态路由配置菜单结构",
+    "permission.c5265212": "遍历顶部路由根据顶部菜单生成对应侧边栏菜单",
+    "permission.18ad3b57": "没有的项直接添加到过滤的路由有的项根据分组生成的",
+    "permission.f8fee917": "处理过分组的过滤的路由没有的项包括在不存在直接添加到有的项根据分组"
+  },
+  "router.d": {
+    "router.d.7c9777f9": "侧菜单分组侧菜单分组图标侧菜单分组侧菜单分组标题是否为子分组默认侧菜单分组下的路由配置",
+    "router.d.ab3c383c": "拓展路由元数据基础配置路由标题路由图标导航配置是否在菜单中隐藏是否为独立页面不参与菜单全屏占满顶部菜单一级菜单例如",
+    "router.d.1ec6e8ad": "页面打开方式例如"
+  },
+  "EditPassPwd": {
+    "EditPassPwd.e689f523": "旧密码",
+    "EditPassPwd.93331bad": "密码策略描述文字",
+    "EditPassPwd.529e571e": "密码强必须包括英文大写字母到英文小写字母到个基本数字到和非字母字符如等且密码长度为个字符密码字符类型不限定密码长度为个字符表单校验规则",
+    "EditPassPwd.19160310": "新密码不能与旧密码相同",
+    "EditPassPwd.6637ec2b": "策略获取失败时使用默认值打开弹窗弹窗显示回调",
+    "EditPassPwd.0b1300f2": "密码修改失败"
+  },
+  "NotifySettingDialog": {
+    "NotifySettingDialog.80fffe94": "未填写地址时不再提醒",
+    "NotifySettingDialog.6e4af5c7": "用于接收通知消息和找回密码",
+    "NotifySettingDialog.33219b46": "手机号码",
+    "NotifySettingDialog.bd22db1c": "判断是否为管理员不包含时为管理员",
+    "NotifySettingDialog.c90394f1": "描述文字",
+    "NotifySettingDialog.798758c3": "如果管理员有配置消息发送设置以及勾选发送的事件范围在此填写了正确的邮箱地址手机号则会收到相应的消息通知",
+    "NotifySettingDialog.2dd2d410": "请输入正确格式的手机号",
+    "NotifySettingDialog.fca12fa1": "企业微信暂未启用获取通知设置",
+    "NotifySettingDialog.b145ddf7": "企业微信暂未启用",
+    "NotifySettingDialog.6dfec0e6": "设置成功",
+    "NotifySettingDialog.1196f617": "设置失败"
+  },
+  "Lock": {
+    "Lock.e2bce3ca": "密码不能为空",
+    "Lock.909d817d": "会话已锁定请输入密码解锁",
+    "Lock.5d42ae53": "获取直接从接口获取用户名不依赖可能为空",
+    "Lock.e10e331b": "点击解锁回车解锁"
+  },
+  "Login": {
+    "Login.4bec5352": "服务支持",
+    "Login.a0916ab8": "在线帮助",
+    "Login.ae9bc067": "相关修改密码相关",
+    "Login.75755be8": "判断是否需要强制改密",
+    "Login.c5fcddf1": "修改密码弹窗描述文字",
+    "EditPassPwd.25789b11": "密码中至少包括英文大写字母到英文小写字母到个基本数字到和非字母字符如等中的三种且密码长度为个字符",
+    "Login.1f463553": "密码强必须包括英文大写字母到英文小写字母到个基本数字到和非字母字符如等且密码长度为个字符",
+    "Login.96795db7": "登录登录含登录前退出上一会话登录前先退出上一会话直接用绕过拦截",
+    "Login.0136c108": "获取登录盐值获取登录盐值返回和标识",
+    "Login.09f4c077": "获取登录盐值失败",
+    "Login.5d5808ed": "登录登录处理异常和强制改密",
+    "Login.6f801f02": "账户锁定",
+    "Login.bd86b49f": "登录已锁定请于后重试授权异常",
+    "Login.19bfcbaf": "登录失败",
+    "Login.e8a727d1": "强制改密",
+    "Login.e64a3bc1": "回调获取硬件序列号后判断",
+    "Login.4c1f683e": "未检测到硬件加密锁请插入硬件加密锁",
+    "Login.1f0f943b": "修改密码弹窗显示事件修改密码弹窗隐藏事件忘记密码忘记密码无无忘记密码弹窗隐藏事件",
+    "Login.f6781c01": "邮件发送失败",
+    "Login.343527ef": "邮件发送成功请检查邮箱",
+    "Login.13bb10b3": "检测到{sn.length}个硬件加密锁，请只插入1个"
+  },
+  "Reset": {
+    "EditPassPwd.8ed7e3c3": "两次输入不相同请重新输入",
+    "Reset.b80f2345": "修改成功",
+    "Reset.5a8f68d2": "修改密码失败",
+    "Reset.67d2df68": "获取失败"
+  },
+  "main": {
+    "main.bccc00b4": "科力锐灾备存储软件系统"
+  }
+}

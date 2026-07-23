@@ -30,5 +30,7 @@ module.exports = {
         ignorePseudoElements: ['v-deep', 'v-global', 'v-slotted'],
       },
     ],
+    'declaration-property-value-no-unknown': null,
+    'scss/comment-no-empty': null,
   },
 }
